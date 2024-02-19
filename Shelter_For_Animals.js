@@ -3,13 +3,28 @@
 // obj.getInfo(); // Виводить всі властивості, включаючи щойно додану.
 
 // Ex. 1
-var shelter = {
+
+let shelter = {
     lastName: 'Sunny',
     Type: 'Cat',
     Age: 1,
-    Food: 'Wet food'
+    Food: 'Wet food',
+    getInfo: function() {
+      let obj = {};
+      for (let i in shelter){
+          if (typeof this[i] !== 'function'){
+            console.log(`${i}: ${this[i]}`);
+          }
+          else{
+            console.log(`${i}: function - la, la, la :)`);
+          }
+      }
+      // console.log(JSON.stringify(this));
+    }
   };
-  
-  console.log(shelter);
-  shelter.sterilized = 'yes';
-  console.log(shelter); 
+
+shelter.sterilized = 'yes';
+let object = shelter.getInfo();
+shelter.city = 'New York';
+shelter.getInfo();
+
