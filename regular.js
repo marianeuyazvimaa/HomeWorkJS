@@ -21,23 +21,15 @@ function validation(email) {
     return rex.test(email);
 }
 
-function objectValidate (arr) {
-    const saveObjects = [];
+function objectValidate(arr) {
 
-    arr.forEach((obj, index)=>{
-        if(!validation(obj.email)) {
-            saveObjects.push(index);
-        }
-    });
-    return saveObjects;
+    return arr.filter(obj => validation(obj.email)).map(obj => obj.email);
 }
-const searchEmail = objectValidate(arr);
+    const validEmails = objectValidate(arr);
 
-if (searchEmail.length > 0) {
-    console.log('Не валідний емейл. Спробуй ще :3');
-    searchEmail.forEach((index) => {
-        console.log(arr[index]);
-    });
-} else {
-    console.log('Чудовий варіант для емейлу - одобрюю!');
-}
+    if (validEmails.length > 0) {
+        console.log('Чудовий варіант для емейлу - одобрюю!');
+        console.log(validEmails);
+    } else {
+        console.log('Трішки не підходить емейл. Спробуй ще :3');
+    }
